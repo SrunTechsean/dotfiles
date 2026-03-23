@@ -1,2 +1,5 @@
 # Tmux - ignore downloaded plugins 
 tmux/plugins/
+
+# Tracking the changes of my plugins version
+nvim/lazy-lock.json
