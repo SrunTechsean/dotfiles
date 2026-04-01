@@ -1,0 +1,36 @@
+return {
+    "stevearc/conform.nvim",
+    opts = {
+        formatters = {
+            stylua = {
+                prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
+            },
+            shfmt = {
+                prepend_args = { "-i", "4", "-ci" },
+            },
+            ruff_format = {
+                command = "ruff",
+                args = { "format", "--line-length", "160", "--stdin-filename", "$FILENAME" },
+                stdin = true,
+            },
+            ruff_fix = {
+                command = "ruff",
+                args = { "check", "--fix", "--stdin-filename", "$FILENAME" },
+                stdin = true,
+            },
+        },
+        formatters_by_ft = {
+            c = { "clang-format" },
+            cpp = { "clang-format" },
+            python = { "ruff_format" },
+            lua = { "stylua" },
+            html = { "biome" },
+            css = { "biome" },
+            javascript = { "biome" },
+            typescript = { "biome" },
+            json = { "biome" },
+            jsonc = { "biome" },
+            sh = { "shfmt" },
+        },
+    },
+}
