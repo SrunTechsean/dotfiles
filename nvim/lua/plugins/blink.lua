@@ -1,32 +1,32 @@
 return {
-  "saghen/blink.cmp",
-  opts = {
-    completion = {
-      accept = { auto_brackets = { enabled = false } },
-      menu = {
-        auto_show = true,
-        max_height = 10,
-      },
+    "saghen/blink.cmp",
+    dependencies = {
+        "mikavilpas/blink-ripgrep.nvim",
     },
-    sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
-      transform_items = function(_, items)
-        return items
-      end,
-      min_keyword_length = 1,
+    opts = {
+        completion = {
+            accept = { auto_brackets = { enabled = false } },
+            menu = {
+                auto_show = true,
+                max_height = 10,
+            },
+        },
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+            transform_items = function(_, items)
+                return items
+            end,
+            min_keyword_length = 1,
+            providers = {
+                ripgrep = {
+                    module = "blink-ripgrep",
+                    name = "Ripgrep",
+                },
+            },
+        },
+        keymap = {
+            preset = "default",
+            ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        },
     },
-
-    keymap = {
-      preset = "default",
-      -- ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-CR>"] = { "select_and_accept", "fallback" },
-
-      ["<Esc>"] = {
-        function(cmp)
-          cmp.cancel()
-          vim.cmd("stopinsert")
-        end,
-      },
-    },
-  },
 }
