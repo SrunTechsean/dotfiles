@@ -71,3 +71,13 @@ vim.keymap.set("n", "<leader>r", function()
     vim.fn.jobstart(cmd, { term = true })
     vim.cmd("startinsert")
 end, { desc = "Run/Compile Current File" })
+
+-- Generate annotation (defaults to function under cursor)
+vim.keymap.set("n", "<leader>cn", function()
+    require("neogen").generate({ type = "func" })
+end, { desc = "Generate JSDoc/Annotation" })
+
+-- Generate class annotation specifically
+vim.keymap.set("n", "<leader>cN", function()
+    require("neogen").generate({ type = "class" })
+end, { desc = "Generate Class Annotation" })
